@@ -29,20 +29,20 @@ window.SITE_CONTENT = {
   /* ---------- Top bar ---------- */
   topBar: {
     // The Resume button opens a small menu with these download choices.
+    // To swap a resume: put the new PDF in assets/docs and update "file".
+    // The download is saved under the PDF's own file name.
     resumeButton: "Resume",
     resumeMenuLabel: "Choose a resume to download",
     resumes: [
       {
         label: "Product",
         note: "PDF",
-        file: "assets/docs/Suryanarayan Menon A Product Resume.pdf",
-        downloadName: "Suryanarayan-Menon-Anilkumar-Resume-Product-Management.pdf"
+        file: "assets/docs/Suryanarayan Menon A Product Resume.pdf"
       },
       {
         label: "Engineering",
         note: "PDF",
-        file: "assets/docs/Suryanarayan Menon A Engineering Resume.pdf",
-        downloadName: "Suryanarayan-Menon-Anilkumar-Resume-Engineering.pdf"
+        file: "assets/docs/Suryanarayan Menon A Engineering Resume.pdf"
       }
     ],
     menuOpen: "Menu",
@@ -132,6 +132,13 @@ window.SITE_CONTENT = {
     logos: [
       { src: "assets/logos/insight.png", alt: "Insight logo", width: 800, height: 244 }
     ],
+    // Shown on the company card, beside the name.
+    recognition: {
+      label: "Recognition",
+      title: "Associate Recognition Award",
+      count: "3 times",
+      when: ["Q2 2024", "Q1 2025", "Q3 2025"]
+    },
     promotion: {
       label: "Promoted",
       detail: "L2 → L4 · April 2025",

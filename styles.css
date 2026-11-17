@@ -841,6 +841,45 @@ button {
 .company-logos { display: flex; flex-wrap: wrap; gap: 10px; }
 
 .company-text { min-width: 0; }
+
+/* Recognition, beside the company name (below it on small screens) */
+.company-award {
+  flex: 1 1 100%;
+  display: grid;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+}
+@media (min-width: 960px) {
+  .company-award {
+    flex: 0 1 auto;
+    margin-left: auto;
+    padding: 2px 0 2px 28px;
+    border-top: 0;
+    border-left: 1px dashed var(--line);
+  }
+}
+.company-award-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.3;
+}
+.company-award-title svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
+.award-count {
+  padding: 2px 8px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
 .company-name { font-size: 1.375rem; font-weight: 700; margin-top: 4px; }
 .company-meta { color: var(--muted); font-size: 1rem; margin-top: 2px; }
 
@@ -1005,6 +1044,7 @@ button {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 1rem;
+  line-height: 1.35;
   justify-self: start;
 }
 .award svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
@@ -1045,18 +1085,6 @@ button {
 .school-date { color: var(--muted); font-size: 1rem; margin-top: 4px; }
 .highlights { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
 
-.highlight {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 12px;
-  background: var(--surface-2);
-  border-left: 3px solid var(--accent);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.0625rem;
-}
-
 .assist-list { list-style: none; display: grid; gap: 8px; }
 .assist-list li {
   display: grid;
@@ -1068,11 +1096,14 @@ button {
 .assist-list strong { font-family: var(--font-display); font-weight: 600; font-size: 1.0625rem; line-height: 1.35; }
 .assist-list span { color: var(--muted); font-size: 1rem; line-height: 1.45; }
 
+/* "Other college things": assistantships, publication */
+.school-extra {
+  padding-top: 18px;
+  border-top: 1px dashed var(--line);
+}
 .school-pub {
   display: grid;
   justify-items: start;
-  padding-top: 18px;
-  border-top: 1px dashed var(--line);
 }
 .school-pub .sub-label { margin-bottom: 8px; }
 .pub-link { margin-top: 14px; }

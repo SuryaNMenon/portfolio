@@ -201,8 +201,16 @@
       h('p', { class: 'label resume-pop-title', id: 'resume-pop-title', text: T.resumeMenuLabel }),
       h('ul', { class: 'resume-options', 'aria-labelledby': 'resume-pop-title' },
         T.resumes.map(function (r) {
+          var href = r.file, name = r.downloadName;
+          try { href = encodeURI(decodeURI(r.file)); } catch (e) { /* keep as typed */ }
+          if (!name) {
+            name = String(r.file).split('/').pop();
+            try { name = decodeURIComponent(name); } catch (e) { /* keep as typed */ }
+          }
           return h('li', null,
-            h('a', { class: 'resume-option', href: r.file, download: r.downloadName, svg: I.download },
+            // "download" saves the file. Browsers that ignore it (for example when the
+            // page is opened straight from a folder) open the PDF in a new tab instead.
+            h('a', { class: 'resume-option', href: href, download: name, target: '_blank', rel: 'noopener', svg: I.download },
               h('span', { class: 'ro-label', text: r.label }),
               h('span', { class: 'ro-note label', text: r.note })
             )
@@ -326,7 +334,15 @@
       h('div', { class: 'company-text' },
         h('h3', { class: 'company-name', text: E.company }),
         h('p', { class: 'company-meta', text: E.location + ' · ' + E.span })
-      )
+      ),
+      E.recognition && E.recognition.title ? h('div', { class: 'company-award' },
+        h('p', { class: 'label', text: E.recognition.label }),
+        h('p', { class: 'company-award-title', svg: I.star },
+          h('span', { text: E.recognition.title }),
+          E.recognition.count ? h('span', { class: 'award-count', text: E.recognition.count }) : null
+        ),
+        E.recognition.when && E.recognition.when.length ? chipList(E.recognition.when) : null
+      ) : null
     ));
 
     var list = h('ol', { class: 'level-list' });
@@ -487,10 +503,17 @@
             ' · ' + s.date
           )
         ),
+        // 1. accomplishments
         s.highlights && s.highlights.length ? h('ul', { class: 'highlights' },
-          s.highlights.map(function (t) { return h('li', { class: 'highlight', text: t }); })
+          s.highlights.map(function (t) { return h('li', { class: 'award', svg: I.star }, t); })
         ) : null,
-        s.assistantships && s.assistantships.length ? h('div', null,
+        // 2. coursework
+        s.courses && s.courses.length ? h('div', null,
+          h('h4', { class: 'label sub-label', text: Lb.courses }),
+          chipList(s.courses)
+        ) : null,
+        // 3. everything else from college: assistantships, publication
+        s.assistantships && s.assistantships.length ? h('div', { class: 'school-extra' },
           h('h4', { class: 'label sub-label', text: Lb.assistantships }),
           h('ul', { class: 'assist-list' },
             s.assistantships.map(function (a) {
@@ -498,11 +521,7 @@
             })
           )
         ) : null,
-        s.courses && s.courses.length ? h('div', null,
-          h('h4', { class: 'label sub-label', text: Lb.courses }),
-          chipList(s.courses)
-        ) : null,
-        pub && pub.title ? h('div', { class: 'school-pub' },
+        pub && pub.title ? h('div', { class: 'school-pub school-extra' },
           h('h4', { class: 'label sub-label', text: Lb.publication }),
           h('p', { class: 'pub-title', text: pub.title }),
           h('p', { class: 'pub-venue', text: pub.venue }),

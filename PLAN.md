@@ -86,3 +86,10 @@ Feedback: the first build leaned too hard into the game theme. Changes made:
 - [x] Scroll animation: section rule draws itself with a blue tracer; reveals smoothed; content already scrolled past appears instantly.
 - [x] Skim review: project Results moved above What I did; phone layouts for hobbies, footer and resume menu tidied.
 - [x] Re-tested: 4 widths x 2 modes (no horizontal scroll, 44px targets, 16px text, no broken images), 44 interaction checks, 0 console errors.
+
+## Revision 4 (2026-11-16)
+- [x] Associate Recognition Award (3 times: Q2 2024, Q1 2025, Q3 2025) added to the company card in Experience.
+- [x] Education cards ordered: accomplishments, coursework, then assistantships / publication.
+- [x] Accomplishments in Education use the same star style as the project award.
+- [x] Resume downloads fixed: saved under each PDF's own file name; opens in a new tab where a browser won't download (local files).
+- [x] Re-tested: 44 interaction checks, 4 widths x 2 modes, 0 console errors.

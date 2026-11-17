@@ -27,7 +27,7 @@ Tick a box once it's handled. Each item has a ready-to-paste prompt for a future
   Where: `content.js` → `education.schools[1].highlights`
   Prompt: `Change my rank line on the GEC card to "___" and tick item 2 in MISSING.md.`
 
-- [ ] **3. Both resume PDFs show your phone number.** The website never shows it, but anyone who downloads `resume.pdf` or `resume-tech.pdf` will see it. If you'd rather not share it, export copies without the phone line and save them over the files in `assets/docs/`.
+- [ ] **3. Both resume PDFs show your phone number.** The website never shows it, but anyone who downloads either resume (the two PDFs in `assets/docs/`) will see it. If you'd rather not share it, export copies without the phone line and save them over the files in `assets/docs/`.
   Prompt: `I replaced both PDFs in assets/docs with versions without my phone number. Check both download options still work and tick item 3 in MISSING.md.`
 
 - [ ] **4. Johnson & Johnson logos.** `assets/logos/Johnson___Johnson/` isn't used because J&J isn't on your resume (I won't invent a role).
@@ -53,9 +53,10 @@ You gave me these directly, so they're on the site. Listing them so you can keep
 
 - [ ] **7. Assistantships** on the CMU card: "Research Assistant, Tech Policy Student Engagement & Outreach" and "Teaching Assistant, NoSQL Database Management".
 - [ ] **8. "Jenkins Plugin Manager"** under DevOps skills, and **"SOC Analysis"** under Security operations.
+- [ ] **8b. Associate Recognition Award** on the SADA card: three times, in Q2 2024, Q1 2025 and Q3 2025.
 - [ ] **9. D&D community:** "grew it from 0 to 250 unique members organically".
 - [ ] **10. "Merit"** in "25% merit scholarship" (the resumes say "25% scholarship recipient").
-- [ ] **11. The two resumes differ slightly.** The site follows `resume.pdf` (the product management one). The engineering resume words some bullets differently, for example "8 enterprise clients against SOC 2 and NIST frameworks". Nothing on the site contradicts either, but tell me if you'd like any of the engineering wording used.
+- [ ] **11. The two resumes differ slightly.** The site follows the Product resume. The engineering resume words some bullets differently, for example "8 enterprise clients against SOC 2 and NIST frameworks". Nothing on the site contradicts either, but tell me if you'd like any of the engineering wording used.
   Prompt: `Remove ___ from my site.` / `Change ___ to "___".`
 
 ## Want to add more?
@@ -71,8 +72,7 @@ You gave me these directly, so they're on the site. Listing them so you can keep
 
 ## Small things I decided (tell me if you want them changed)
 
-- [ ] **15. Resume button labels.** The two choices read "Product management resume" and "Engineering resume".
-  Prompt: `Rename the second resume option to "Security engineering resume".`
+- [x] **15. Resume downloads.** Each download is saved under the PDF's own file name. To swap a resume, put the new PDF in `assets/docs` and update `file` in `content.js` → `topBar.resumes`. If you open the site by double-clicking `index.html`, browsers won't download local files, so the PDF opens in a new tab instead. On the live site it downloads normally.
 
 - [ ] **16. Contact line.** "Hiring for Summer 2027, or just want to talk product and security? I'd love to hear from you."
   Where: `content.js` → `contact.closing`
