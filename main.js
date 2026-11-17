@@ -68,17 +68,14 @@
     mail: svg('<rect x="3" y="5" width="18" height="14"/><path d="M3 7l9 6 9-6"/>'),
     external: svg('<path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/>'),
     linkedin: svg('<path fill-rule="evenodd" d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm2.9 7.4V18h2.6v-7.6zm1.3-4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm3.3 4V18h2.6v-4c0-1.1.4-2 1.6-2s1.4 1 1.4 2.1V18h2.6v-4.6c0-2.4-1.3-3.3-3-3.3-1.3 0-2.2.6-2.6 1.3v-1z"/>', { fill: true }),
+    right: svg('<path d="M5 12h13M12 6l6 6-6 6"/>', { sw: 2.5 }),
+    expand: svg('<path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7"/>'),
     star: svg('<path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6l-5.4 2.9 1.2-6-4.5-4.2 6.1-.7z"/>', { fill: true }),
     save: svg('<path d="M5 3h11l3 3v15H5z"/><path d="M8 3v5h7V3M8 21v-7h8v7"/>'),
     person: svg('<circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-3.8 3.6-6 7-6s6.2 2.2 7 6"/>'),
     d20: svg('<path d="M12 2.5l8.5 4.9v9.2L12 21.5l-8.5-4.9V7.4z"/><path class="acc" d="M12 7.5l5 8.2H7z"/><path d="M12 2.5v5M3.5 7.4L12 7.5l8.5-.1M3.5 7.4L7 15.7M20.5 7.4L17 15.7M3.5 16.6L7 15.7M20.5 16.6L17 15.7M12 21.5L7 15.7M12 21.5l5-5.8"/>', { sw: 1.4 }),
     controller: svg('<path d="M7 8h10a4.5 4.5 0 0 1 4.4 5.4l-.8 4a2.5 2.5 0 0 1-4.3 1.2L14.5 16h-5l-1.8 2.6a2.5 2.5 0 0 1-4.3-1.2l-.8-4A4.5 4.5 0 0 1 7 8z"/><path d="M8 10.5v4M6 12.5h4"/><path class="acc" d="M15.5 11h.01M18 13.5h.01" stroke-width="2.6" stroke-linecap="round"/>', { sw: 1.6 })
   };
-  var EMBLEM = '<svg viewBox="0 0 15 15" shape-rendering="crispEdges" aria-hidden="true" focusable="false">' +
-    '<rect class="emblem-bg" width="15" height="15" rx="2"/>' +
-    '<path class="emblem-px" d="M3 3h4v1h-4zM2 4h1v1h-1zM2 5h1v1h-1zM3 6h3v1h-3zM6 7h1v1h-1zM6 8h1v1h-1zM2 9h4v1h-4zM8 3h1v1h-1zM12 3h1v1h-1zM8 4h2v1h-2zM11 4h2v1h-2zM8 5h1v1h-1zM10 5h1v1h-1zM12 5h1v1h-1zM8 6h1v1h-1zM12 6h1v1h-1zM8 7h1v1h-1zM12 7h1v1h-1zM8 8h1v1h-1zM12 8h1v1h-1zM8 9h1v1h-1zM12 9h1v1h-1z"/>' +
-    '<rect class="emblem-bar" x="2" y="11" width="11" height="1"/></svg>';
-
   // Badge pieces: hexagon frame, fill, glyph (shield or star), lock
   var HEX = 'M26 2l23 13v28L26 56 3 43V15z';
   function badgeIcon(kind) {
@@ -92,7 +89,7 @@
       '<svg class="glyph-locked" viewBox="-14 -17 52 58" aria-hidden="true" focusable="false"><rect x="6" y="11" width="12" height="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
   }
 
-  // Themed placeholder art for project cards (until real images are added)
+  // Themed placeholder art, used only when a project has no images yet
   function questArt(kind) {
     var grid = '';
     for (var x = 20; x < 320; x += 20) grid += '<path class="a-soft" d="M' + x + ' 0V180"/>';
@@ -136,13 +133,16 @@
   /* ---------- Section heading (shared) ---------- */
   var ORDER = ['experience', 'projects', 'education', 'leadership', 'achievements', 'skills', 'hobbies', 'contact'];
 
-  function sectionHead(key, extra) {
+  function sectionHead(key) {
     var s = C.sections[key];
     var idx = ORDER.indexOf(key) + 1;
     return h('header', { class: 'section-head', 'data-reveal': '' },
-      h('p', { class: 'eyebrow label' },
-        h('span', { class: 'eyebrow-index', 'aria-hidden': 'true', text: pad2(idx) }),
-        h('span', { text: s.navLabel + (extra ? ' · ' + extra : '') })
+      h('p', { class: 'eyebrow label', 'aria-hidden': 'true' },
+        h('span', { class: 'eyebrow-index', text: pad2(idx) }),
+        h('span', { class: 'rule' },
+          h('span', { class: 'rule-line' }),
+          h('span', { class: 'rule-tracer' }, h('span'))
+        )
       ),
       h('h2', { class: 'section-title', id: key + '-title', 'data-scramble': '' },
         h('span', { class: 't-real', text: s.title })
@@ -162,15 +162,20 @@
     );
   }
 
+  function bulletList(items) {
+    return h('ul', { class: 'bullets' }, items.map(function (d) { return h('li', { text: d }); }));
+  }
+
+  function chipList(items) {
+    return h('ul', { class: 'chips' }, items.map(function (c) { return h('li', { class: 'chip', text: c }); }));
+  }
+
   function wrap() { return h('div', { class: 'wrap' }); }
 
   /* ---------- Top bar ---------- */
   function renderTopBar() {
     var T = C.topBar;
-    var brand = $('#brand');
-    brand.setAttribute('aria-label', T.homeLabel);
-    brand.innerHTML = EMBLEM;
-    brand.appendChild(h('span', { class: 'brand-name', 'aria-hidden': 'true', text: C.meta.playerName }));
+    $('#brand').appendChild(h('span', { class: 'brand-name', text: C.meta.shortName }));
 
     $('#site-nav').setAttribute('aria-label', T.navLabel);
     var list = $('#nav-list');
@@ -181,12 +186,31 @@
     });
 
     var actions = $('#topbar-actions');
-    actions.appendChild(h('a', {
-      class: 'btn btn-primary resume-btn',
-      href: C.meta.resumeFile,
-      download: C.meta.resumeDownloadName,
+
+    // Resume: one button that opens the download choices
+    var resumeBtn = h('button', {
+      class: 'btn resume-btn',
+      type: 'button',
+      id: 'resume-btn',
+      'aria-expanded': 'false',
+      'aria-controls': 'resume-pop',
       svg: I.download
-    }, h('span', { class: 'lg', text: T.resumeLabel }), h('span', { class: 'sm', text: T.resumeShort })));
+    }, h('span', { text: T.resumeButton }));
+    resumeBtn.insertAdjacentHTML('beforeend', I.chev);
+    var pop = h('div', { class: 'resume-pop', id: 'resume-pop', hidden: true },
+      h('p', { class: 'label resume-pop-title', id: 'resume-pop-title', text: T.resumeMenuLabel }),
+      h('ul', { class: 'resume-options', 'aria-labelledby': 'resume-pop-title' },
+        T.resumes.map(function (r) {
+          return h('li', null,
+            h('a', { class: 'resume-option', href: r.file, download: r.downloadName, svg: I.download },
+              h('span', { class: 'ro-label', text: r.label }),
+              h('span', { class: 'ro-note label', text: r.note })
+            )
+          );
+        })
+      )
+    );
+    actions.appendChild(h('div', { class: 'resume-menu', id: 'resume-menu' }, resumeBtn, pop));
 
     var sw = h('button', {
       class: 'theme-switch',
@@ -218,7 +242,12 @@
     actions.appendChild(mb);
   }
 
-  /* ---------- Hero ---------- */
+  /* ---------- Intro (hero) ---------- */
+  var RING = '<svg viewBox="0 0 200 200" fill="none" aria-hidden="true" focusable="false">' +
+    '<circle class="ring-line" cx="100" cy="100" r="99"/>' +
+    '<path class="ring-accent" d="M133.9 7A99 99 0 0 1 193 66.1"/>' +
+    '<path class="ring-accent" d="M66.1 193A99 99 0 0 1 7 133.9"/></svg>';
+
   function renderHero() {
     var H = C.hero;
     var sec = $('#top');
@@ -235,36 +264,24 @@
     }
 
     var copy = h('div', { class: 'hero-copy' },
-      h('p', { class: 'hero-tag hero-enter', style: '--d:0' },
+      h('p', { class: 'hero-name hero-enter', style: '--d:0' },
         h('span', { class: 'pip', 'aria-hidden': 'true' }),
-        H.tag,
-        h('span', { class: 'sep', 'aria-hidden': 'true', text: '·' }),
-        C.meta.playerName
-      ),
-      title,
-      h('p', { class: 'hero-name hero-enter', style: '--d:2' },
-        H.name + ' ',
+        h('span', { text: H.name }),
         h('span', { class: 'note', text: H.nameNote })
       ),
-      h('p', { class: 'hero-sub hero-enter', style: '--d:3', text: H.subline }),
-      h('ul', { class: 'start-menu hero-enter', style: '--d:4', 'aria-label': H.menuLabel },
-        H.menu.map(function (m) {
-          return h('li', null,
-            h('a', { class: 'menu-option', href: m.href },
-              h('span', { class: 'sel', 'aria-hidden': 'true' }),
-              h('span', { text: m.label }),
-              h('span', { class: 'hint', 'aria-hidden': 'true', text: m.hint })
-            )
-          );
+      title,
+      h('p', { class: 'hero-sub hero-enter', style: '--d:2', text: H.subline }),
+      h('div', { class: 'hero-actions hero-enter', style: '--d:3' },
+        H.buttons.map(function (b) {
+          var a = h('a', { class: 'btn btn-lg ' + (b.primary ? 'btn-primary' : 'btn-ghost'), href: b.href }, b.label);
+          if (b.primary) a.insertAdjacentHTML('beforeend', I.right);
+          return a;
         })
       )
     );
 
-    var card = h('div', { class: 'player hud hero-enter', style: '--d:3', role: 'group', 'aria-label': H.cardTitle },
-      h('div', { class: 'player-head label' },
-        h('span', { text: H.cardTitle }),
-        h('span', { class: 'player-status', text: H.cardStatus })
-      ),
+    var portrait = h('div', { class: 'portrait-wrap hero-enter', style: '--d:1' },
+      h('div', { class: 'portrait-ring', 'aria-hidden': 'true', svg: RING }),
       h('div', { class: 'portrait' },
         h('img', {
           src: H.portraitSrc,
@@ -273,53 +290,50 @@
           height: H.portraitHeight,
           fetchpriority: 'high',
           decoding: 'async'
-        }),
-        h('span', { class: 'portrait-tag', 'aria-hidden': 'true' }, h('span', { text: 'P1 ' }), C.meta.playerName)
-      ),
-      h('dl', { class: 'player-stats' },
-        H.stats.map(function (s) {
-          return h('div', null, h('dt', { class: 'label', text: s.label }), h('dd', { text: s.value }));
         })
-      ),
-      h('div', { class: 'best-run' },
-        h('p', { class: 'label', text: H.bestRun.label }),
-        h('p', { text: H.bestRun.value })
       )
     );
 
-    var cue = h('a', { class: 'press-start hero-enter', style: '--d:6', href: H.scrollCueTarget },
-      h('span', { class: 'keycap', 'aria-hidden': 'true', svg: I.down }),
-      H.scrollCue
+    var facts = h('dl', { class: 'facts hero-enter', style: '--d:4', 'aria-label': H.factsLabel },
+      H.facts.map(function (f) {
+        return h('div', { class: 'fact' },
+          h('dt', { class: 'label', text: f.label }),
+          h('dd', { text: f.value })
+        );
+      })
     );
 
-    var inner = h('div', { class: 'wrap hero-inner' }, copy, card);
-    sec.appendChild(inner);
-    sec.appendChild(cue);
+    sec.appendChild(h('div', { class: 'wrap' },
+      h('div', { class: 'hero-inner' }, copy, portrait),
+      facts
+    ));
   }
 
-  /* ---------- Experience: levels ---------- */
+  /* ---------- Experience ---------- */
   function renderExperience() {
     var E = C.experience;
     var w = wrap();
     w.appendChild(sectionHead('experience'));
 
-    w.appendChild(h('div', { class: 'world card hud', 'data-reveal': '' },
-      h('div', { class: 'logo-plate' },
-        h('img', { src: E.logoSrc, alt: E.logoAlt, width: E.logoWidth, height: E.logoHeight, loading: 'lazy', decoding: 'async' })
+    w.appendChild(h('div', { class: 'company card hud', 'data-reveal': '' },
+      h('div', { class: 'company-logos' },
+        E.logos.map(function (l) {
+          return h('div', { class: 'logo-plate' },
+            h('img', { src: l.src, alt: l.alt, width: l.width, height: l.height, loading: 'lazy', decoding: 'async' })
+          );
+        })
       ),
-      h('div', { class: 'world-text' },
-        h('p', { class: 'label', text: E.worldLabel + ' · ' + E.location }),
-        h('h3', { class: 'world-company', text: E.company }),
-        h('p', { class: 'world-meta', text: E.span })
+      h('div', { class: 'company-text' },
+        h('h3', { class: 'company-name', text: E.company }),
+        h('p', { class: 'company-meta', text: E.location + ' · ' + E.span })
       )
     ));
 
     var list = h('ol', { class: 'level-list' });
     E.levels.forEach(function (L, i) {
-      var logId = 'log-' + L.level.toLowerCase();
-      var log = h('div', { class: 'log', id: logId, hidden: true },
-        h('ul', { class: 'bullets' }, L.details.map(function (d) { return h('li', { text: d }); }))
-      );
+      var slug = L.level.toLowerCase();
+      var logId = 'log-' + slug;
+      var log = h('div', { class: 'log', id: logId, hidden: true }, bulletList(L.details));
       var toggleText = h('span', { text: E.showDetails });
       var toggle = h('button', {
         class: 'btn btn-ghost log-toggle',
@@ -337,14 +351,8 @@
 
       list.appendChild(h('li', { class: 'level', 'data-reveal': '' },
         h('div', { class: 'level-node' + (i === 0 ? ' is-top' : ''), 'aria-hidden': 'true', text: L.level }),
-        h('article', { class: 'level-card card', 'aria-labelledby': 'role-' + L.level.toLowerCase() },
-          h('div', { class: 'level-top' },
-            h('span', { class: 'label', text: L.levelName })
-          ),
-          h('h4', { class: 'level-role', id: 'role-' + L.level.toLowerCase() },
-            L.role + ' ',
-            h('span', { class: 'visually-hidden', text: '(' + L.levelName + ')' })
-          ),
+        h('article', { class: 'level-card card', 'aria-labelledby': 'role-' + slug },
+          h('h4', { class: 'level-role', id: 'role-' + slug, text: L.role }),
           h('p', { class: 'level-meta', text: L.dates + ' · ' + L.location }),
           h('p', { class: 'level-summary', text: L.summary }),
           statsList(L.stats, 'stats-3'),
@@ -353,14 +361,14 @@
         )
       ));
 
-      // the level-up marker sits between the two levels
+      // the promotion marker sits between the two roles
       if (i === 0 && E.levels.length > 1) {
         list.appendChild(h('li', { class: 'level-up', 'data-reveal': '' },
           h('div', { class: 'level-up-node', 'aria-hidden': 'true', svg: I.up }),
           h('p', { class: 'level-up-text' },
-            h('span', { class: 'lu', 'aria-hidden': 'true', text: E.levelUp.label }),
-            h('span', { class: 'lu-detail', 'aria-hidden': 'true', text: E.levelUp.detail }),
-            h('span', { class: 'visually-hidden', text: E.levelUp.srText })
+            h('span', { class: 'lu', 'aria-hidden': 'true', text: E.promotion.label }),
+            h('span', { class: 'lu-detail', 'aria-hidden': 'true', text: E.promotion.detail }),
+            h('span', { class: 'visually-hidden', text: E.promotion.srText })
           )
         ));
       }
@@ -373,7 +381,48 @@
     $('#experience').appendChild(w);
   }
 
-  /* ---------- Projects: side quests ---------- */
+  /* ---------- Projects ---------- */
+  function projectFigure(q, Lb) {
+    var imgs = q.images || [];
+    if (!imgs.length) {
+      var ph = h('div', { class: 'quest-art' });
+      ph.innerHTML = questArt(q.art || 'network');
+      return ph;
+    }
+    var img = h('img', { loading: 'lazy', decoding: 'async' });
+    var frame = h('a', { class: 'figure-frame', target: '_blank', rel: 'noopener' },
+      img,
+      h('span', { class: 'figure-zoom', 'aria-hidden': 'true', svg: I.expand }),
+      h('span', { class: 'visually-hidden', text: ' ' + Lb.fullSize })
+    );
+    var cap = h('figcaption', { class: 'figure-cap' });
+    var tabs = null;
+
+    function show(j) {
+      var im = imgs[j];
+      img.src = im.src;
+      img.alt = im.alt || '';
+      img.width = im.width;
+      img.height = im.height;
+      frame.href = im.src;
+      cap.textContent = im.caption || '';
+      if (tabs) $$('.figure-tab', tabs).forEach(function (b, k) { b.setAttribute('aria-pressed', String(k === j)); });
+    }
+
+    if (imgs.length > 1) {
+      tabs = h('div', { class: 'figure-tabs', role: 'group', 'aria-label': Lb.views },
+        imgs.map(function (im, j) {
+          return h('button', {
+            class: 'figure-tab', type: 'button', 'aria-pressed': 'false',
+            onclick: function () { show(j); }
+          }, im.tab || String(j + 1));
+        })
+      );
+    }
+    show(0);
+    return h('figure', { class: 'project-figure' }, frame, h('div', { class: 'figure-bar' }, cap, tabs));
+  }
+
   function renderProjects() {
     var P = C.projects, Lb = P.labels;
     var w = wrap();
@@ -381,19 +430,11 @@
     var grid = h('div', { class: 'quests' });
 
     P.items.forEach(function (q, i) {
-      var art = h('div', { class: 'quest-art' });
-      if (q.imageSrc) {
-        art.appendChild(h('img', { src: q.imageSrc, alt: q.imageAlt || '', width: 1280, height: 720, loading: 'lazy', decoding: 'async' }));
-      } else {
-        art.innerHTML = questArt(q.art);
-      }
-
-      grid.appendChild(h('article', { class: 'quest card', 'data-reveal': '', style: '--i:' + i, 'aria-labelledby': 'quest-' + i },
-        art,
+      grid.appendChild(h('article', { class: 'quest card', 'data-reveal': '', style: '--i:' + i, 'aria-labelledby': 'project-' + i },
+        projectFigure(q, Lb),
         h('div', { class: 'quest-body' },
           h('div', null,
-            h('p', { class: 'label', text: Lb.quest + ' ' + pad2(i + 1) }),
-            h('h3', { class: 'quest-title', id: 'quest-' + i, text: q.title }),
+            h('h3', { class: 'quest-title', id: 'project-' + i, text: q.title }),
             h('dl', { class: 'quest-meta' },
               h('div', null, h('dt', { class: 'label', text: Lb.client }), h('dd', { text: q.client })),
               h('div', null, h('dt', { class: 'label', text: Lb.party }), h('dd', { text: q.party }))
@@ -401,16 +442,16 @@
           ),
           q.badge ? h('p', { class: 'award', svg: I.star }, q.badge) : null,
           h('div', null,
+            h('h4', { class: 'label sub-label', text: Lb.results }),
+            statsList(q.results, 'stats-2')
+          ),
+          h('div', null,
             h('h4', { class: 'label sub-label', text: Lb.did }),
-            h('ul', { class: 'bullets' }, q.did.map(function (d) { return h('li', { text: d }); }))
+            bulletList(q.did)
           ),
           h('div', null,
-            h('h4', { class: 'label sub-label', text: Lb.rewards }),
-            statsList(q.rewards, 'stats-2')
-          ),
-          h('div', null,
-            h('h4', { class: 'label sub-label', text: Lb.pmMoves }),
-            h('ul', { class: 'chips' }, q.pmMoves.map(function (m) { return h('li', { class: 'chip', text: m }); }))
+            h('h4', { class: 'label sub-label', text: Lb.pmSkills }),
+            chipList(q.pmSkills)
           )
         )
       ));
@@ -420,7 +461,7 @@
     $('#projects').appendChild(w);
   }
 
-  /* ---------- Education: training grounds ---------- */
+  /* ---------- Education ---------- */
   function renderEducation() {
     var E = C.education, Lb = E.labels;
     var w = wrap();
@@ -428,6 +469,7 @@
     var grid = h('div', { class: 'schools' });
 
     E.schools.forEach(function (s, i) {
+      var pub = s.publication;
       grid.appendChild(h('article', { class: 'school card', 'data-reveal': '', style: '--i:' + i, 'aria-labelledby': 'school-' + i },
         h('div', { class: 'school-head' },
           h('div', { class: 'school-logo' },
@@ -438,65 +480,91 @@
             h('p', { class: 'school-loc', text: s.location })
           )
         ),
-        h('p', { class: 'status label' + (s.current ? ' is-current' : ''), text: s.current ? Lb.current : Lb.done }),
         h('div', null,
           h('p', { class: 'school-degree', text: s.degree }),
-          h('p', { class: 'school-date', text: s.date })
+          h('p', { class: 'school-date' },
+            h('span', { class: 'status' + (s.current ? ' is-current' : ''), text: s.current ? Lb.current : Lb.done }),
+            ' · ' + s.date
+          )
         ),
-        s.highlight ? h('p', { class: 'highlight', text: s.highlight }) : null,
+        s.highlights && s.highlights.length ? h('ul', { class: 'highlights' },
+          s.highlights.map(function (t) { return h('li', { class: 'highlight', text: t }); })
+        ) : null,
+        s.assistantships && s.assistantships.length ? h('div', null,
+          h('h4', { class: 'label sub-label', text: Lb.assistantships }),
+          h('ul', { class: 'assist-list' },
+            s.assistantships.map(function (a) {
+              return h('li', null, h('strong', { text: a.role }), h('span', { text: a.area }));
+            })
+          )
+        ) : null,
         s.courses && s.courses.length ? h('div', null,
           h('h4', { class: 'label sub-label', text: Lb.courses }),
-          h('ul', { class: 'chips' }, s.courses.map(function (c) { return h('li', { class: 'chip', text: c }); }))
+          chipList(s.courses)
+        ) : null,
+        pub && pub.title ? h('div', { class: 'school-pub' },
+          h('h4', { class: 'label sub-label', text: Lb.publication }),
+          h('p', { class: 'pub-title', text: pub.title }),
+          h('p', { class: 'pub-venue', text: pub.venue }),
+          pub.url ? h('a', { class: 'btn btn-ghost pub-link', href: pub.url, target: '_blank', rel: 'noopener noreferrer' },
+            pub.linkLabel,
+            h('span', { class: 'visually-hidden', text: ' (opens in a new tab)' }),
+            h('span', { svg: I.external, style: 'display:inline-flex' })
+          ) : null
         ) : null
       ));
     });
     w.appendChild(grid);
-
-    var pub = E.publication;
-    if (pub && pub.title) {
-      w.appendChild(h('article', { class: 'publication card hud', 'data-reveal': '', 'aria-labelledby': 'pub-title' },
-        h('div', null,
-          h('p', { class: 'label', text: Lb.publication }),
-          h('h3', { class: 'pub-title', id: 'pub-title', text: pub.title }),
-          h('p', { class: 'pub-venue', text: pub.venue })
-        ),
-        pub.url ? h('a', { class: 'btn btn-ghost', href: pub.url, target: '_blank', rel: 'noopener noreferrer' },
-          pub.linkLabel,
-          h('span', { class: 'visually-hidden', text: ' (opens in a new tab)' }),
-          h('span', { svg: I.external, style: 'display:inline-flex' })
-        ) : null
-      ));
-    }
     $('#education').appendChild(w);
   }
 
-  /* ---------- Leadership: guild hall ---------- */
+  /* ---------- Leadership ---------- */
   function renderLeadership() {
-    var L = C.leadership;
+    var L = C.leadership, F = L.featured;
     var w = wrap();
     w.appendChild(sectionHead('leadership'));
     var slots = h('ul', { class: 'party-slots', 'aria-hidden': 'true' });
     for (var i = 0; i < 5; i++) slots.appendChild(h('li', { svg: I.person }));
 
-    w.appendChild(h('article', { class: 'guild card hud', 'data-reveal': '', 'aria-labelledby': 'guild-org' },
+    w.appendChild(h('article', { class: 'guild card hud', 'data-reveal': '', 'aria-labelledby': 'lead-role' },
       h('div', null,
-        h('p', { class: 'label', text: L.dates }),
-        h('h3', { class: 'guild-org', id: 'guild-org', text: L.org }),
-        h('p', { class: 'guild-role', text: L.role }),
-        h('p', { class: 'guild-summary', text: L.summary })
+        h('p', { class: 'label', text: F.dates }),
+        h('h3', { class: 'guild-org', id: 'lead-role', text: F.role }),
+        h('p', { class: 'guild-role', text: F.org }),
+        h('p', { class: 'guild-summary', text: F.summary })
       ),
       h('div', null,
         h('div', { class: 'party' },
           slots,
-          h('p', { class: 'party-text' }, h('strong', { text: L.partyLabel }), h('span', { text: L.partyNote }))
+          h('p', { class: 'party-text' }, h('strong', { text: F.teamLabel }), h('span', { text: F.teamNote }))
         ),
-        statsList(L.stats, 'stats-rows')
+        statsList(F.stats, 'stats-rows')
       )
     ));
+
+    if (L.roles && L.roles.length) {
+      w.appendChild(h('h3', { class: 'roles-title', 'data-reveal': '', text: L.earlierTitle }));
+      w.appendChild(h('ol', { class: 'role-timeline' },
+        L.roles.map(function (r) {
+          return h('li', { class: 'role-item', 'data-reveal': '' },
+            h('p', { class: 'role-dates label', text: r.dates }),
+            h('div', null,
+              h('h4', { class: 'role-title', text: r.role }),
+              h('p', { class: 'role-org', text: r.org }),
+              r.points && r.points.length ? bulletList(r.points) : null,
+              r.chips && r.chips.length ? h('div', { class: 'role-chips' },
+                r.chipsLabel ? h('p', { class: 'label sub-label', text: r.chipsLabel }) : null,
+                chipList(r.chips)
+              ) : null
+            )
+          );
+        })
+      ));
+    }
     $('#leadership').appendChild(w);
   }
 
-  /* ---------- Achievements: unlocked ---------- */
+  /* ---------- Certifications & awards ---------- */
   function renderAchievements() {
     var A = C.achievements;
     var w = wrap();
@@ -510,13 +578,13 @@
           items.map(function (b, i) {
             return h('li', { 'data-reveal': '', style: '--i:' + Math.min(i, 4) },
               h('div', { class: 'badge', 'data-kind': kind },
-                h('div', { class: 'badge-icon', 'aria-hidden': 'true', svg: badgeIcon(kind) }),
+                b.logoSrc
+                  ? h('div', { class: 'cert-logo' },
+                      h('img', { src: b.logoSrc, alt: b.logoAlt || '', width: b.logoWidth, height: b.logoHeight, loading: 'lazy', decoding: 'async' }))
+                  : h('div', { class: 'badge-icon', 'aria-hidden': 'true', svg: badgeIcon(kind) }),
                 h('div', null,
                   h('p', { class: 'badge-name', text: b.name }),
-                  h('p', { class: 'badge-meta' },
-                    h('span', { text: b.tag }),
-                    h('span', { class: 'badge-state', text: A.unlockedLabel })
-                  )
+                  h('p', { class: 'badge-meta', text: b.tag })
                 )
               )
             );
@@ -526,11 +594,11 @@
     }
 
     w.appendChild(group(A.certGroupLabel, A.certs, 'cert'));
-    w.appendChild(group(A.storyGroupLabel, A.story, 'story'));
+    w.appendChild(group(A.awardGroupLabel, A.awards, 'story'));
     $('#achievements').appendChild(w);
   }
 
-  /* ---------- Skills: loadout ---------- */
+  /* ---------- Skills ---------- */
   function renderSkills() {
     var S = C.skills;
     var w = wrap();
@@ -567,7 +635,7 @@
       panel.appendChild(h('section', { class: 'slot-group card', 'data-group': g.id, 'data-reveal': '', style: '--i:' + i, 'aria-labelledby': 'slot-' + g.id },
         h('div', { class: 'slot-head' },
           h('h3', { class: 'slot-name', id: 'slot-' + g.id, text: g.name }),
-          h('span', { class: 'label', text: g.items.length + (g.items.length === 1 ? ' slot' : ' slots') })
+          h('span', { class: 'label', text: g.items.length + ' ' + (g.items.length === 1 ? S.countOne : S.countMany) })
         ),
         h('ul', { class: 'skills' }, g.items.map(function (s) { return h('li', { class: 'skill', text: s }); }))
       ));
@@ -602,17 +670,23 @@
     $('#skills').appendChild(w);
   }
 
-  /* ---------- Hobbies: between sessions ---------- */
+  /* ---------- Hobbies ---------- */
   function renderHobbies() {
+    var Hb = C.hobbies;
     var w = wrap();
     w.appendChild(sectionHead('hobbies'));
     w.appendChild(h('div', { class: 'hobbies' },
-      C.hobbies.map(function (hb, i) {
+      Hb.items.map(function (hb, i) {
+        // the d20 is a real button: it rolls the die
+        var icon = hb.icon === 'd20'
+          ? h('button', { class: 'hobby-icon d20-btn', type: 'button', 'aria-label': Hb.rollLabel, title: Hb.rollLabel, 'data-roll': '', svg: I.d20 })
+          : h('div', { class: 'hobby-icon', 'aria-hidden': 'true', svg: I[hb.icon] || I.d20 });
         return h('article', { class: 'hobby card', 'data-reveal': '', style: '--i:' + i },
-          h('div', { class: 'hobby-icon', 'aria-hidden': 'true', svg: I[hb.icon] || I.d20 }),
+          icon,
           h('div', null,
             h('h3', { class: 'hobby-title', text: hb.title }),
-            h('p', { class: 'hobby-line', text: '“' + hb.line + '”' })
+            h('p', { class: 'hobby-text', text: hb.text }),
+            hb.aside ? h('p', { class: 'hobby-line', text: '“' + hb.aside + '”' }) : null
           )
         );
       })
@@ -620,11 +694,11 @@
     $('#hobbies').appendChild(w);
   }
 
-  /* ---------- Contact: two-player mode ---------- */
+  /* ---------- Contact ---------- */
   function renderContact() {
     var K = C.contact, M = C.meta;
     var w = wrap();
-    w.appendChild(sectionHead('contact', K.eyebrow));
+    w.appendChild(sectionHead('contact'));
 
     var emailText = h('span', { class: 'email-text', id: 'email-text', text: M.email });
     var status = h('p', { class: 'contact-status', role: 'status', 'aria-live': 'polite' });
@@ -709,15 +783,51 @@
     var F = C.footer;
     var year = h('span', { id: 'year', text: String(new Date().getFullYear()) });
     $('#footer').appendChild(h('div', { class: 'wrap footer-inner' },
-      h('p', { class: 'saved', svg: I.save }, F.saved),
-      h('p', null, '© ', year, ' ' + C.meta.fullName + ' · ' + C.meta.location + '. ' + F.builtWith),
-      h('a', { class: 'top-link', href: '#top', svg: I.up }, F.backToTop)
+      h('p', { class: 'footer-thanks', text: F.thanks }),
+      h('p', { class: 'footer-meta' }, C.meta.fullName + ' · ' + C.meta.location + ' · ', year)
     ));
+    // floating button, always within reach once you have scrolled
+    doc.body.appendChild(h('a', { class: 'to-top', id: 'to-top', href: '#top', 'aria-label': F.backToTop, title: F.backToTop, svg: I.up }));
   }
 
   /* =====================================================================
      Interactions
      ===================================================================== */
+
+  // Only one pop-up (resume choices, phone menu) is open at a time.
+  var closers = [];
+  function closeOthers(me) { closers.forEach(function (fn) { if (fn !== me) fn(); }); }
+
+  /* ---------- Resume choices ---------- */
+  function initResumeMenu() {
+    var btn = $('#resume-btn'), pop = $('#resume-pop'), box = $('#resume-menu');
+    function isOpen() { return btn.getAttribute('aria-expanded') === 'true'; }
+    function set(open, returnFocus) {
+      btn.setAttribute('aria-expanded', String(open));
+      pop.hidden = !open;
+      if (!open && returnFocus) btn.focus();
+    }
+    var closeMe = function () { if (isOpen()) set(false); };
+    closers.push(closeMe);
+
+    btn.addEventListener('click', function () {
+      var next = !isOpen();
+      if (next) closeOthers(closeMe);
+      set(next);
+    });
+    pop.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setTimeout(function () { set(false); }, 0);   // let the download start first
+    });
+    doc.addEventListener('keydown', function (e) {
+      if ((e.key === 'Escape' || e.key === 'Esc') && isOpen()) set(false, true);
+    });
+    doc.addEventListener('click', function (e) {
+      if (isOpen() && !box.contains(e.target)) set(false);
+    });
+    box.addEventListener('focusout', function (e) {
+      if (isOpen() && e.relatedTarget && !box.contains(e.relatedTarget)) set(false);
+    });
+  }
 
   /* ---------- Day / night ---------- */
   function initTheme() {
@@ -777,7 +887,14 @@
     }
     function isOpen() { return btn.getAttribute('aria-expanded') === 'true'; }
 
-    btn.addEventListener('click', function () { set(!isOpen()); });
+    var closeMe = function () { if (isOpen()) set(false); };
+    closers.push(closeMe);
+
+    btn.addEventListener('click', function () {
+      var next = !isOpen();
+      if (next) closeOthers(closeMe);
+      set(next);
+    });
     list.addEventListener('click', function (e) {
       if (e.target.closest('a')) set(false);
     });
@@ -795,13 +912,14 @@
     }
   }
 
-  /* ---------- XP bar + active menu item ---------- */
+  /* ---------- Progress bar + active menu item ---------- */
   function initScrollState() {
     var fill = $('#xp-fill');
     var links = $$('.nav-link');
     var targets = links.map(function (a) { return { link: a, el: doc.getElementById(a.getAttribute('data-target')) }; })
       .filter(function (t) { return t.el; });
     var header = $('#topbar');
+    var toTop = $('#to-top');
     var ticking = false;
     var current = null;
 
@@ -811,6 +929,7 @@
       var max = root.scrollHeight - window.innerHeight;
       var p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
       fill.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+      if (toTop) toTop.classList.toggle('is-on', y > 480);
 
       var line = header.offsetHeight + window.innerHeight * 0.3;
       var active = null;
@@ -873,18 +992,36 @@
     window.requestAnimationFrame(frame);
   }
 
-  /* ---------- Reveals, level path, unlocks ---------- */
+  /* ---------- Reveals, career path line, badge icons ---------- */
   function initMotion() {
     if (!motionOK) return;
 
-    var revealIO = new IntersectionObserver(function (entries) {
+    var pending = $$('[data-reveal], .levels');
+    var revealIO;
+    // Content the visitor has already scrolled past shows up instantly,
+    // so nothing pops in when they scroll back up.
+    function settleAbove() {
+      pending = pending.filter(function (n) {
+        if (n.classList.contains('is-in')) return false;
+        if (n.getBoundingClientRect().bottom < 0) {
+          n.classList.add('no-anim', 'is-in');
+          revealIO.unobserve(n);
+          return false;
+        }
+        return true;
+      });
+    }
+    revealIO = new IntersectionObserver(function (entries) {
+      var hit = false;
       entries.forEach(function (en) {
         if (!en.isIntersecting) return;
+        hit = true;
         revealIO.unobserve(en.target);
         en.target.classList.add('is-in');
       });
-    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
-    $$('[data-reveal], .levels').forEach(function (n) { revealIO.observe(n); });
+      if (hit) settleAbove();
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    pending.forEach(function (n) { revealIO.observe(n); });
 
     var titleIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
@@ -950,6 +1087,13 @@
       hideTimer = setTimeout(function () { toast.classList.remove('is-showing'); }, 4600);
     }
 
+    $$('[data-roll]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (!reduceMotion) { b.classList.remove('is-spun'); void b.offsetWidth; b.classList.add('is-spun'); }
+        roll();
+      });
+    });
+
     doc.addEventListener('keydown', function (e) {
       if (e.ctrlKey || e.metaKey || e.altKey || !e.key || e.key.length !== 1) return;
       var t = e.target;
@@ -980,7 +1124,7 @@
     if (window.console) console.error('Render error:', err);
   }
 
-  [initTheme, initMenu, initScrollState, initMotion, initEasterEgg].forEach(function (fn) {
+  [initTheme, initResumeMenu, initMenu, initScrollState, initMotion, initEasterEgg].forEach(function (fn) {
     try { fn(); } catch (err) {
       if (fn === initMotion) root.classList.remove('motion');
       if (window.console) console.error(err);

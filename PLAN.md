@@ -53,3 +53,36 @@ Rule above all others: *effects stay quiet and secondary to reading.*
 - 36 interaction checks passed: active nav for all 8 sections, nav jump lands below the sticky bar, theme toggle + saved choice survives reload, level log expand/collapse, skills filter + live announcement, 20 unique skills, d20 easter egg (pointer-events: none), copy email, resume PDF served with download attribute, mailto/LinkedIn/year, phone menu open / Escape (focus returns) / closes on link tap, reduced motion (no scramble, nothing hidden, badges unlocked).
 - Console: 0 errors, 0 warnings.
 - Every resume number found in content.js; no phone number or street address in any site file.
+
+## Revision 2 (2026-11-16): professional profile first, theme as visuals only
+Feedback: the first build leaned too hard into the game theme. Changes made:
+- [x] Plain section headings (Experience, Projects, Education, Leadership, Certifications & Awards, Skills, Hobbies, Contact) and plain labels in every card. No game wording carries information.
+- [x] Intro rebuilt: name, new tagline, plain "View my experience" / "Contact me" buttons, an "At a glance" strip (Now, Looking for, Background, Recent result). Player card and "Press start" cue removed.
+- [x] Headshot is now a circle cropped to the full head and top of the suit.
+- [x] L2 summary replaced with the exact supplied sentence.
+- [x] Top-left emblem removed (text "Surya" only). Tab icon is the letter S in the site colors.
+- [x] Real project screenshots: BIS events chart, whole-campus and main-block GNS3 diagrams (cropped, rotated upright, compressed, with a two-image switch and full-size links).
+- [x] "Hand-built" footer line removed.
+- [x] SADA and Insight logos both shown in Experience.
+- [x] Publication moved inside the GEC Barton Hill card; statewide rank and four courses added.
+- [x] Leadership expanded from LinkedIn screenshots into a featured role plus a five-role timeline.
+- [x] Kept as visual theme only: grid backdrop, corner brackets, typeface, heading scramble, progress bar, menu selector marks, badge icon change on scroll, hidden d20 easter egg.
+- [x] Re-tested: 4 widths x 2 modes (no horizontal scroll, 44px targets, no broken images), 36 interaction checks, 0 console errors.
+
+## Revision 3 (2026-11-16): polish round
+- [x] Top-left name is plain text (not a link). Tab icon is a simple S.
+- [x] Certification logos added (backgrounds removed, trimmed, on light plates).
+- [x] Campus network card shows only the whole-campus diagram with the supplied caption.
+- [x] Skills: Bash moved to DevOps; Jenkins Plugin Manager added (21 skills).
+- [x] Resume button redesigned: outlined "Resume" button that opens two download choices (product management / engineering).
+- [x] Intro: "security in mind" tagline; "graduating December 2027"; looking for a product management or security engineering internship.
+- [x] Experience: Insight logo only; L2/L4 removed from titles (kept on the path line); new Senior role summary.
+- [x] CMU card: two assistantships.
+- [x] Leadership: Junior Executive Committee and GEC Barton Hill Secretary roles removed; intro notes these are some of the leadership roles.
+- [x] Hobbies: clickable d20; D&D community story (0 to 250 members); new video games line.
+- [x] Contact: short hook line. Footer: centered, no copyright symbol, thank-you line.
+- [x] Floating back-to-top button (replaces the footer link).
+- [x] Hover corner highlights on every box.
+- [x] Scroll animation: section rule draws itself with a blue tracer; reveals smoothed; content already scrolled past appears instantly.
+- [x] Skim review: project Results moved above What I did; phone layouts for hobbies, footer and resume menu tidied.
+- [x] Re-tested: 4 widths x 2 modes (no horizontal scroll, 44px targets, 16px text, no broken images), 44 interaction checks, 0 console errors.

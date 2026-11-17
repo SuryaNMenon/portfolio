@@ -20,19 +20,31 @@ window.SITE_CONTENT = {
   /* ---------- Basics ---------- */
   meta: {
     fullName: "Suryanarayan Menon Anilkumar",
-    playerName: "Surya",
+    shortName: "Surya",
     email: "suryanmenon@cmu.edu",
     linkedin: "https://www.linkedin.com/in/suryanarayan-menon/",
-    location: "Pittsburgh, PA",
-    resumeFile: "assets/docs/resume.pdf",
-    resumeDownloadName: "Suryanarayan-Menon-Anilkumar-Resume.pdf"
+    location: "Pittsburgh, PA"
   },
 
   /* ---------- Top bar ---------- */
   topBar: {
-    homeLabel: "Surya, back to the start screen",
-    resumeLabel: "Download Resume",
-    resumeShort: "Resume",
+    // The Resume button opens a small menu with these download choices.
+    resumeButton: "Resume",
+    resumeMenuLabel: "Choose a resume to download",
+    resumes: [
+      {
+        label: "Product",
+        note: "PDF",
+        file: "assets/docs/resume.pdf",
+        downloadName: "Suryanarayan-Menon-Anilkumar-Resume-Product-Management.pdf"
+      },
+      {
+        label: "Engineering",
+        note: "PDF",
+        file: "assets/docs/resume-tech.pdf",
+        downloadName: "Suryanarayan-Menon-Anilkumar-Resume-Engineering.pdf"
+      }
+    ],
     menuOpen: "Menu",
     menuClose: "Close",
     navLabel: "Sections",
@@ -41,112 +53,99 @@ window.SITE_CONTENT = {
     themeNight: "Night"
   },
 
-  /* ---------- Start screen (hero) ---------- */
+  /* ---------- Intro (top of the page) ---------- */
   hero: {
-    tag: "Player 1",
-    headline: "Security belongs on day one. I help teams get there.",
-    // Word(s) from the headline to highlight in blue:
-    highlight: "day one.",
     name: "Suryanarayan Menon Anilkumar",
-    nameNote: "Surya works too.",
-    subline: "I take the fuzzy problems customer-facing teams bring me and turn them into clear ones, with a plan attached. After 3 years in cloud security, I’m studying Information Systems at Carnegie Mellon and looking for a Product Management internship for Summer 2027.",
-    menuLabel: "Start menu",
-    menu: [
-      { label: "See my levels", hint: "Experience", href: "#experience" },
-      { label: "Start a co-op", hint: "Contact", href: "#contact" }
+    nameNote: "Surya for short",
+    headline: "I help customers build solutions with security in mind from day 0.",
+    // Word(s) from the headline to highlight in blue:
+    highlight: "day 0.",
+    subline: "I’ve spent 3 years leading cloud security engagements, turning ambiguous customer problems into defined ones with a clear plan to solve them.",
+    buttons: [
+      { label: "View my experience", href: "#experience", primary: true },
+      { label: "Contact me", href: "#contact", primary: false }
     ],
-    scrollCue: "Press start",
-    scrollCueTarget: "#experience",
-    portraitSrc: "assets/images/headshot-1000.jpg",
-    portraitWidth: 667,
-    portraitHeight: 1000,
-    portraitAlt: "Portrait of Surya smiling, wearing glasses and a navy blazer, standing in front of palm leaves.",
-    cardTitle: "Player card",
-    cardStatus: "Ready",
-    stats: [
-      { label: "Class", value: "Cloud security, now product" },
-      { label: "Base", value: "Pittsburgh, PA" },
-      { label: "Training", value: "MISM, Carnegie Mellon · Dec 2027" },
-      { label: "Quest", value: "PM internship · Summer 2027" },
-      { label: "XP", value: "3 years in cloud security" }
-    ],
-    bestRun: {
-      label: "Best run",
-      value: "SOC 2 audit review done in 1.5 months, compressed from an initial 4 months"
-    }
+    portraitSrc: "assets/images/headshot-circle.jpg",
+    portraitWidth: 720,
+    portraitHeight: 720,
+    portraitAlt: "Surya smiling, with curly hair and glasses, wearing a navy blazer.",
+    factsLabel: "At a glance",
+    facts: [
+      { label: "Now", value: "Master of Information Systems Management student at Carnegie Mellon University, graduating December 2027" },
+      { label: "Looking for", value: "A product management or security engineering internship for Summer 2027" },
+      { label: "Background", value: "3 years in cloud security at SADA, an Insight company" },
+      { label: "Recent result", value: "An enterprise client’s SOC 2 audit review done in 1.5 months, compressed from an initial 4 months" }
+    ]
   },
 
   /* ---------- Section names ----------
-     navLabel = the short plain name in the top bar
-     title    = the game-menu heading on the page                       */
+     navLabel = the short name in the top bar
+     title    = the heading on the page                                 */
   sections: {
     experience: {
       navLabel: "Experience",
-      title: "Levels Cleared",
-      intro: "The question I kept asking at work: why don’t more teams care about security in their product? These two levels are how I started answering it, one client at a time."
+      title: "Experience",
+      intro: "The question I kept asking at work: why don’t more teams care about security in their product? These two roles are how I started answering it, one client at a time."
     },
     projects: {
       navLabel: "Projects",
-      title: "Side Quests",
-      intro: "Two quests from before the day job. Both taught me the same habit: start with the people, write down what they need, then build."
+      title: "Projects",
+      intro: "Two projects from before my full-time work. Both taught me the same habit: start with the people, write down what they need, then build."
     },
     education: {
       navLabel: "Education",
-      title: "Training Grounds",
+      title: "Education",
       intro: "Where I learned the craft, and where I’m sharpening it now."
     },
     leadership: {
       navLabel: "Leadership",
-      title: "Guild Hall",
-      intro: "Volunteering taught me that the best teams are built on clear roles and shared goals."
+      title: "Leadership",
+      intro: "I’ve volunteered with IEEE since April 2020. These are some of the roles where I’ve served in a leadership capacity."
     },
     achievements: {
       navLabel: "Certifications",
-      title: "Unlocked",
-      intro: "Five certifications and two moments I’m proud of. Every one of them started out locked."
+      title: "Certifications & Awards",
+      intro: "Five professional certifications and two recognitions I’m proud of."
     },
     skills: {
       navLabel: "Skills",
-      title: "Loadout",
-      intro: "What I bring to the party. Pick a slot to focus on one kind of skill."
+      title: "Skills",
+      intro: "What I bring to a team. Pick a category to focus on one kind of skill."
     },
     hobbies: {
       navLabel: "Hobbies",
-      title: "Between Sessions",
+      title: "Hobbies",
       intro: "When I log off, you’ll usually find me at a game table or holding a controller."
     },
     contact: {
       navLabel: "Contact",
-      title: "Two-Player Mode",
+      title: "Contact",
       intro: ""
     }
   },
 
-  /* ---------- Experience (the levels) ---------- */
+  /* ---------- Experience ---------- */
   experience: {
-    worldLabel: "World 1",
     company: "SADA, an Insight company",
     location: "Kerala, India",
     span: "June 2023 – July 2026",
-    logoSrc: "assets/logos/sada.png",
-    logoAlt: "SADA, an Insight company logo",
-    logoWidth: 400,
-    logoHeight: 101,
-    levelUp: {
-      label: "Level up",
+    logos: [
+      { src: "assets/logos/insight.png", alt: "Insight logo", width: 800, height: 244 }
+    ],
+    promotion: {
+      label: "Promoted",
       detail: "L2 → L4 · April 2025",
-      srText: "Promoted from Level 2 to Level 4 in April 2025."
+      srText: "Promoted from L2 to L4 in April 2025."
     },
-    showDetails: "Open level log",
-    hideDetails: "Close level log",
+    showDetails: "Show details",
+    hideDetails: "Hide details",
     levels: [
       {
         level: "L4",
-        levelName: "Level 4",
         role: "Senior Cloud Security Engineer",
         dates: "April 2025 – July 2026",
         location: "Kerala, India",
-        summary: "Stepped in as interim cybersecurity lead for an enterprise client, owned a client’s 15-endpoint API library as the single point of contact, and patched 5 exposed credentials within a week.",
+        summary: "The direct point of contact for customers across our security engineering engagements. I co-led an enterprise client’s interim cybersecurity leadership, owned the roadmap for a 15-endpoint API library, and led a cross-team fix that closed 5 credential leaks within a week.",
         stats: [
           { value: "1.5 months", label: "SOC 2 audit review, compressed from an initial 4 months" },
           { value: "15", label: "API endpoints owned, roadmap to lifecycle" },
@@ -160,11 +159,10 @@ window.SITE_CONTENT = {
       },
       {
         level: "L2",
-        levelName: "Level 2",
         role: "Associate Cloud Security Engineer",
         dates: "June 2023 – April 2025",
         location: "Kerala, India",
-        summary: "Took a cloud security assessment to market, wrote the incident playbooks clients relied on, and rolled out one security framework across 200+ assets.",
+        summary: "Conducted cloud security assessments and prescribed secure go to market strategies, wrote the incident playbooks clients relied on, and rolled out multiple security frameworks across 200+ assets.",
         stats: [
           { value: "Up to 60%", label: "lift in customers’ compliance scores" },
           { value: "7+", label: "clients on standardized incident response playbooks" },
@@ -179,67 +177,85 @@ window.SITE_CONTENT = {
     ]
   },
 
-  /* ---------- Side quests (projects) ---------- */
+  /* ---------- Projects ----------
+     Each project can have one or more images. With two or more, the
+     card shows small buttons to switch between them.                  */
   projects: {
     labels: {
-      quest: "Side quest",
-      client: "Quest giver",
+      client: "In association with",
       party: "Who it was for",
       did: "What I did",
-      rewards: "Rewards",
-      pmMoves: "Product moves"
+      results: "Results",
+      pmSkills: "Product skills used",
+      views: "Choose an image",
+      fullSize: "Open the full-size image in a new tab"
     },
     items: [
       {
-        art: "monitor", // placeholder illustration until a real image is added
-        imageSrc: "",   // e.g. "assets/images/patient-monitor.jpg"
-        imageAlt: "",
         title: "Custom software for patient monitors",
         client: "Sri Chitra Tirunal Institute for Medical Sciences and Technology, Trivandrum",
         party: "5 clinicians running an intraoperative monitoring research study",
         badge: "IBS Award · Best Original Paper Presentation",
+        images: [
+          {
+            src: "assets/images/project-bis-events.jpg",
+            width: 1600,
+            height: 867,
+            alt: "Line chart of the AVGBIS signal over time with a dotted threshold line at 50. Three stretches where the signal stays below the threshold are shaded red and counted as significant events.",
+            caption: "Detection output from the project report: three significant events flagged where the signal stays below its threshold.",
+            tab: "Detection output"
+          }
+        ],
         did: [
           "Led product discovery and user interviews, acting as the main stakeholder liaison for 5 clinicians.",
           "Gathered requirements, defined user personas, and built a proof-of-concept anomaly-detection algorithm and visualization suite for hemodynamic signals, validated against hundreds of historical surgical cases.",
           "Translated Philips Intellivue Monitor data protocols into a Product Requirement Document (PRD), so two engineering teams could build directly on the findings with no extra discovery."
         ],
-        rewards: [
+        results: [
           { value: "80%", label: "less time to detect an anomaly" },
           { value: "2", label: "engineering teams building from one PRD" }
         ],
-        pmMoves: ["Product discovery", "User interviews", "Personas", "Requirements", "PRD"]
+        pmSkills: ["Product discovery", "User interviews", "Personas", "Requirements", "PRD"]
       },
       {
-        art: "network",
-        imageSrc: "",
-        imageAlt: "",
         title: "Campus network audit",
         client: "Government Engineering College, Barton Hill, Trivandrum",
         party: "10+ IT staff keeping the campus network running",
         badge: "",
+        images: [
+          {
+            src: "assets/images/project-network-campus.jpg",
+            width: 1800,
+            height: 1027,
+            alt: "Network diagram of the entire college, simulated in GNS3: a central switch connects by fiber and UTP links to department switches, labs and dozens of computers.",
+            caption: "A GNS3 simulation of my undergraduate university’s entire network infrastructure.",
+            tab: "Whole campus"
+          }
+        ],
         did: [
           "Led an end-to-end audit, from stakeholder scoping meetings to GNS3 network architecture diagrams.",
           "Ran a vulnerability assessment with Kali Linux tools, fixed 29 critical risks, and presented the findings with a remediation roadmap to the college’s stakeholders.",
           "Owned a zero-to-one proof of concept replacing the legacy firewall with pfSense, backed by a competitive analysis against the incumbent vendor."
         ],
-        rewards: [
+        results: [
           { value: "60%", label: "less troubleshooting time" },
           { value: "29", label: "critical risks found and fixed" },
           { value: "$17,000", label: "in potential savings" },
           { value: "100%+", label: "future traffic growth supported" }
         ],
-        pmMoves: ["Stakeholder scoping", "Competitive analysis", "Zero-to-one PoC", "Roadmap"]
+        pmSkills: ["Stakeholder scoping", "Competitive analysis", "Zero-to-one PoC", "Roadmap"]
       }
     ]
   },
 
-  /* ---------- Training grounds (education) ---------- */
+  /* ---------- Education ---------- */
   education: {
     labels: {
-      current: "Now training",
-      done: "Cleared",
-      courses: "Modules",
-      publication: "Published"
+      current: "In progress",
+      done: "Graduated",
+      courses: "Coursework",
+      assistantships: "Assistantships",
+      publication: "Publication"
     },
     schools: [
       {
@@ -248,7 +264,11 @@ window.SITE_CONTENT = {
         degree: "Master of Information Systems Management",
         date: "Dec 2027",
         current: true,
-        highlight: "25% merit scholarship",
+        highlights: ["25% merit scholarship"],
+        assistantships: [
+          { role: "Research Assistant", area: "Tech Policy Student Engagement & Outreach" },
+          { role: "Teaching Assistant", area: "NoSQL Database Management" }
+        ],
         courses: [
           "Product Management Essentials I/II",
           "Economic Analysis",
@@ -268,62 +288,112 @@ window.SITE_CONTENT = {
         degree: "Bachelor of Technology in Information Technology",
         date: "June 2023",
         current: false,
-        highlight: "GPA 3.84/4",
-        courses: [],
+        highlights: ["GPA 3.84/4", "Ranked 10th statewide in the graduating cohort"],
+        courses: [
+          "Cryptography and Network Security",
+          "Cyber and Network Forensics",
+          "Network Science",
+          "Management for Software Engineers"
+        ],
+        publication: {
+          title: "Routing Algorithms for SDN Performance Optimization",
+          venue: "IEEE ICCSC-10143010",
+          // Link taken from the resume PDF:
+          url: "https://ieeexplore.ieee.org/document/10143010",
+          linkLabel: "Read on IEEE Xplore"
+        },
         logoSrc: "assets/logos/gec-barton-hill.jpg",
         logoAlt: "Government Engineering College, Barton Hill logo",
         logoWidth: 400,
         logoHeight: 400
       }
-    ],
-    publication: {
-      title: "Routing Algorithms for SDN Performance Optimization",
-      venue: "IEEE ICCSC-10143010",
-      // Link taken from the resume PDF:
-      url: "https://ieeexplore.ieee.org/document/10143010",
-      linkLabel: "Read on IEEE Xplore"
-    }
-  },
-
-  /* ---------- Guild (leadership) ---------- */
-  leadership: {
-    org: "IEEE Region 10 Asia Pacific",
-    role: "Vice Chair, Information Management Committee",
-    dates: "Dec 2024 – Jan 2026",
-    summary: "I led a 5-member volunteer team spread across Asia-Pacific and drove our content strategy and student outreach.",
-    partyLabel: "Party of 5",
-    partyNote: "Volunteers across Asia-Pacific",
-    stats: [
-      { value: "5", label: "volunteers on the team" },
-      { value: "65,000+", label: "annual impressions from our content" },
-      { value: "4", label: "outreach events, engaging hundreds of students globally" }
     ]
   },
 
-  /* ---------- Unlocked (certifications + story badges) ---------- */
+  /* ---------- Leadership (volunteering) ----------
+     "featured" is the main role from the resume.
+     "roles" are the earlier roles, most recent first.                 */
+  leadership: {
+    featured: {
+      role: "Vice Chair, Information Management Committee",
+      org: "IEEE Region 10 Asia Pacific",
+      dates: "Dec 2024 – Jan 2026",
+      summary: "I led a 5-member volunteer team spread across Asia-Pacific and drove our content strategy and student outreach.",
+      teamLabel: "Team of 5",
+      teamNote: "Volunteers across Asia-Pacific",
+      stats: [
+        { value: "5", label: "volunteers on the team" },
+        { value: "65,000+", label: "annual impressions from our content" },
+        { value: "4", label: "outreach events, engaging hundreds of students globally" }
+      ]
+    },
+    earlierTitle: "Earlier IEEE roles",
+    roles: [
+      {
+        role: "Social Media Manager, Information Management Committee",
+        org: "IEEE Region 10 (Asia-Pacific Region)",
+        dates: "Feb 2024 – Feb 2025",
+        points: [],
+        chipsLabel: "",
+        chips: []
+      },
+      {
+        role: "Secretary, Student-Young Professionals",
+        org: "IEEE Computer Society Kerala Chapter",
+        dates: "Feb 2023 – Feb 2024",
+        points: [
+          "Core organizer of the chapter’s major events, including SlashKey 3.0 and the All India Computer Society Student and Young Professionals Congress 2023.",
+          "Worked with student leadership teams to coordinate student volunteers across Kerala for professional events."
+        ],
+        chipsLabel: "",
+        chips: []
+      },
+      {
+        role: "Content Curator",
+        org: "IEEE Student Branch, GEC Barton Hill",
+        dates: "Jan 2022 – Jan 2023",
+        points: [
+          "Led the teams drafting the student branch’s award and funding proposals, including the documentation behind the recognitions below.",
+          "Mentored a group of content writers through the year and oversaw every content release from the student branch."
+        ],
+        chipsLabel: "Proposals and documentation I led",
+        chips: [
+          "Darrel Chong Student Activity Award 2022 (Gold)",
+          "IEEE R10 Outstanding Student Branch Award 2022",
+          "IEEE India Council Outstanding Student Volunteer 2022",
+          "IEEE India Council Outstanding Volunteer 2022",
+          "IEEE India Council Outstanding WiE Volunteer 2022",
+          "IEEE CS Chapter Grants",
+          "IEEE RAS Chapter Grants"
+        ]
+      }
+    ]
+  },
+
+  /* ---------- Certifications & awards ---------- */
   achievements: {
-    lockedLabel: "Locked",
-    unlockedLabel: "Unlocked",
-    certGroupLabel: "Certifications",
-    storyGroupLabel: "Story badges",
+    certGroupLabel: "Professional certifications",
+    awardGroupLabel: "Awards and scholarships",
     certs: [
-      { name: "Cisco Certified Network Associate", tag: "Networking" },
-      { name: "Google Professional Security Operations Engineer", tag: "Security operations" },
-      { name: "Google Professional Cloud Security Engineer", tag: "Cloud security" },
-      { name: "Google Professional Cloud Network Engineer", tag: "Cloud networking" },
-      { name: "Certified Ethical Hacker", tag: "Ethical hacking" }
+      { name: "Cisco Certified Network Associate", tag: "Networking", logoSrc: "assets/logos/cert-ccna.png", logoWidth: 299, logoHeight: 196, logoAlt: "Cisco Certified CCNA logo" },
+      { name: "Google Professional Security Operations Engineer", tag: "Security operations", logoSrc: "assets/logos/cert-google-psoe.png", logoWidth: 256, logoHeight: 256, logoAlt: "Google Cloud Certified Professional Security Operations Engineer badge" },
+      { name: "Google Professional Cloud Security Engineer", tag: "Cloud security", logoSrc: "assets/logos/cert-google-pcse.png", logoWidth: 256, logoHeight: 256, logoAlt: "Google Cloud Certified Professional Cloud Security Engineer badge" },
+      { name: "Google Professional Cloud Network Engineer", tag: "Cloud networking", logoSrc: "assets/logos/cert-google-pcne.png", logoWidth: 256, logoHeight: 256, logoAlt: "Google Cloud Certified Professional Cloud Network Engineer badge" },
+      { name: "Certified Ethical Hacker", tag: "Ethical hacking", logoSrc: "assets/logos/cert-ceh.png", logoWidth: 257, logoHeight: 194, logoAlt: "Certified Ethical Hacker logo" }
     ],
-    story: [
+    awards: [
       { name: "IBS Award, Best Original Paper Presentation", tag: "Patient monitor study" },
       { name: "25% merit scholarship", tag: "Carnegie Mellon University" }
     ]
   },
 
-  /* ---------- Loadout (skills) ----------
+  /* ---------- Skills ----------
      Add or remove skills inside a group. Empty groups are hidden.   */
   skills: {
     allLabel: "All",
     filterLabel: "Filter skills by category",
+    countOne: "skill",
+    countMany: "skills",
     statusTemplate: "Showing {count} skills: {group}",
     groups: [
       {
@@ -334,7 +404,7 @@ window.SITE_CONTENT = {
       {
         id: "technical",
         name: "Technical",
-        items: ["Python", "SQL", "Terraform", "Bash", "Artificial Intelligence (AI)", "Google Cloud Platform"]
+        items: ["Python", "SQL", "Terraform", "Artificial Intelligence (AI)", "Google Cloud Platform"]
       },
       {
         id: "secops",
@@ -344,29 +414,35 @@ window.SITE_CONTENT = {
       {
         id: "devops",
         name: "DevOps",
-        items: ["CI/CD", "Jenkins", "Helm"]
+        items: ["CI/CD", "Jenkins", "Jenkins Plugin Manager", "Helm", "Bash"]
       }
     ]
   },
 
-  /* ---------- Between sessions (hobbies) ---------- */
-  hobbies: [
-    {
-      icon: "d20",
-      title: "Dungeons and Dragons",
-      line: "Most of my adult money goes into collecting dice."
-    },
-    {
-      icon: "controller",
-      title: "Video games",
-      line: "I’ll probably pass my game libraries on to my children."
-    }
-  ],
+  /* ---------- Hobbies ----------
+     "text" is the main paragraph. "aside" is an optional extra line.
+     The d20 icon is a button: clicking it rolls the hidden die.        */
+  hobbies: {
+    rollLabel: "Roll the d20",
+    items: [
+      {
+        icon: "d20",
+        title: "Dungeons and Dragons",
+        text: "I love this game enough to want everyone playing it. So I started a community back home to make it easier to get into, and grew it from 0 to 250 unique members organically.",
+        aside: "Most of my adult money goes into collecting dice."
+      },
+      {
+        icon: "controller",
+        title: "Video games",
+        text: "My dad introduced me to video games, and I grew up with them. One day I’ll probably pass my library on to my children.",
+        aside: ""
+      }
+    ]
+  },
 
-  /* ---------- Two-player mode (contact) ---------- */
+  /* ---------- Contact ---------- */
   contact: {
-    eyebrow: "Save point",
-    closing: "Got a fuzzy problem, a product that should be secure from day one, or a question you’re not sure how to ask? Send it my way. I’m always happy to help you find the first move.",
+    closing: "Hiring for Summer 2027, or just want to talk product and security? I’d love to hear from you.",
     emailLabel: "Email",
     copyLabel: "Copy email",
     copiedLabel: "Copied!",
@@ -378,9 +454,8 @@ window.SITE_CONTENT = {
 
   /* ---------- Footer ---------- */
   footer: {
-    saved: "Progress saved",
-    backToTop: "Back to start",
-    builtWith: "Hand-built with HTML, CSS and JavaScript."
+    thanks: "Thanks for making it this far! :)",
+    backToTop: "Back to top"
   },
 
   /* ---------- Hidden easter egg ----------
