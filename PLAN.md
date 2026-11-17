@@ -96,3 +96,4 @@ Feedback: the first build leaned too hard into the game theme. Changes made:
 
 ## Revision 5 (2026-11-16)
 - [x] "Read the report" button with a GitHub icon at the bottom of each project card (opens the PDF on GitHub in a new tab).
+- [x] Google Associate Cloud Engineer certification added with its badge (6 certifications).

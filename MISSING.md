@@ -53,6 +53,7 @@ You gave me these directly, so they're on the site. Listing them so you can keep
 
 - [ ] **7. Assistantships** on the CMU card: "Research Assistant, Tech Policy Student Engagement & Outreach" and "Teaching Assistant, NoSQL Database Management".
 - [ ] **8. "Jenkins Plugin Manager"** under DevOps skills, and **"SOC Analysis"** under Security operations.
+- [ ] **8a. Google Associate Cloud Engineer** in Certifications (not on either resume yet).
 - [ ] **8b. Associate Recognition Award** on the SADA card: three times, in Q2 2024, Q1 2025 and Q3 2025.
 - [ ] **9. D&D community:** "grew it from 0 to 250 unique members organically".
 - [ ] **10. "Merit"** in "25% merit scholarship" (the resumes say "25% scholarship recipient").

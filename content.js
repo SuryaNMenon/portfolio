@@ -105,7 +105,7 @@ window.SITE_CONTENT = {
     achievements: {
       navLabel: "Certifications",
       title: "Certifications & Awards",
-      intro: "Five professional certifications and two recognitions I’m proud of."
+      intro: "Six professional certifications and two recognitions I’m proud of."
     },
     skills: {
       navLabel: "Skills",
@@ -394,6 +394,7 @@ window.SITE_CONTENT = {
       { name: "Google Professional Security Operations Engineer", tag: "Security operations", logoSrc: "assets/logos/cert-google-psoe.png", logoWidth: 256, logoHeight: 256, logoAlt: "Google Cloud Certified Professional Security Operations Engineer badge" },
       { name: "Google Professional Cloud Security Engineer", tag: "Cloud security", logoSrc: "assets/logos/cert-google-pcse.png", logoWidth: 256, logoHeight: 256, logoAlt: "Google Cloud Certified Professional Cloud Security Engineer badge" },
       { name: "Google Professional Cloud Network Engineer", tag: "Cloud networking", logoSrc: "assets/logos/cert-google-pcne.png", logoWidth: 256, logoHeight: 256, logoAlt: "Google Cloud Certified Professional Cloud Network Engineer badge" },
+      { name: "Google Associate Cloud Engineer", tag: "Cloud engineering", logoSrc: "assets/logos/cert-google-ace.png", logoWidth: 256, logoHeight: 256, logoAlt: "Google Cloud Certified Associate Cloud Engineer badge" },
       { name: "Certified Ethical Hacker", tag: "Ethical hacking", logoSrc: "assets/logos/cert-ceh.png", logoWidth: 257, logoHeight: 194, logoAlt: "Certified Ethical Hacker logo" }
     ],
     awards: [
