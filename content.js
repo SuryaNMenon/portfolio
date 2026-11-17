@@ -136,7 +136,7 @@ window.SITE_CONTENT = {
     recognition: {
       label: "Recognition",
       title: "Associate Recognition Award",
-      count: "3 times",
+      count: "3X",
       when: ["Q2 2024", "Q1 2025", "Q3 2025"]
     },
     promotion: {
