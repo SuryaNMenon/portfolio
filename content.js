@@ -35,13 +35,13 @@ window.SITE_CONTENT = {
       {
         label: "Product",
         note: "PDF",
-        file: "assets/docs/resume.pdf",
+        file: "assets/docs/Suryanarayan Menon A Product Resume.pdf",
         downloadName: "Suryanarayan-Menon-Anilkumar-Resume-Product-Management.pdf"
       },
       {
         label: "Engineering",
         note: "PDF",
-        file: "assets/docs/resume-tech.pdf",
+        file: "assets/docs/Suryanarayan Menon A Engineering Resume.pdf",
         downloadName: "Suryanarayan-Menon-Anilkumar-Resume-Engineering.pdf"
       }
     ],
