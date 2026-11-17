@@ -1054,7 +1054,8 @@ button {
 /* Project report link: sits at the bottom of each project card */
 .quest-body { flex: 1; }   /* fills the card so the report link lines up at the bottom */
 .quest-link { justify-self: start; align-self: end; margin-top: 4px; }
-.quest-link:hover { border-color: var(--accent); }
+.quest-link:hover,
+.pub-link:hover { border-color: var(--accent); }
 
 /* ---------- Education ---------- */
 .schools { display: grid; gap: 24px; }
