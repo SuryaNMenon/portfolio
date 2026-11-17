@@ -61,8 +61,7 @@ You gave me these directly, so they're on the site. Listing them so you can keep
 
 ## Want to add more?
 
-- [ ] **12. Project links.** Neither project has a link yet (paper, report, slides, demo).
-  Prompt: `Add a link button to my patient monitor project card that goes to ___ with the label "___". Add a links field in content.js so I can edit it later.`
+- [x] **12. Project links.** Both projects have a "Read the report" button linking to the PDFs in your GitHub repo `SuryaNMenon/College-docs`. Edit them in `content.js` → `projects.items[n].link`.
 
 - [ ] **13. A third project.**
   Prompt: `Add a third project to my Projects section. Title: ___. In association with: ___. Who it was for: ___. What I did: ___, ___, ___. Results (exact numbers): ___. Product skills: ___. I added an image at assets/images/___.`

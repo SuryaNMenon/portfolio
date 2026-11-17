@@ -93,3 +93,6 @@ Feedback: the first build leaned too hard into the game theme. Changes made:
 - [x] Accomplishments in Education use the same star style as the project award.
 - [x] Resume downloads fixed: saved under each PDF's own file name; opens in a new tab where a browser won't download (local files).
 - [x] Re-tested: 44 interaction checks, 4 widths x 2 modes, 0 console errors.
+
+## Revision 5 (2026-11-16)
+- [x] "Read the report" button with a GitHub icon at the bottom of each project card (opens the PDF on GitHub in a new tab).

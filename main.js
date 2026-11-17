@@ -67,6 +67,7 @@
     check: svg('<path d="M5 12.5l4.5 4.5L19 7.5"/>', { cls: 'i-check', sw: 2.5 }),
     mail: svg('<rect x="3" y="5" width="18" height="14"/><path d="M3 7l9 6 9-6"/>'),
     external: svg('<path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/>'),
+    github: svg('<path fill-rule="evenodd" d="M12 2C6.48 2 2 6.58 2 12.23c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.35 1.12 2.92.85.09-.66.35-1.12.64-1.37-2.22-.26-4.55-1.14-4.55-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.8-4.57 5.05.36.32.68.94.68 1.9v2.81c0 .27.18.6.69.49A10.1 10.1 0 0 0 22 12.23C22 6.58 17.52 2 12 2z"/>', { fill: true }),
     linkedin: svg('<path fill-rule="evenodd" d="M4 3h16a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zm2.9 7.4V18h2.6v-7.6zm1.3-4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm3.3 4V18h2.6v-4c0-1.1.4-2 1.6-2s1.4 1 1.4 2.1V18h2.6v-4.6c0-2.4-1.3-3.3-3-3.3-1.3 0-2.2.6-2.6 1.3v-1z"/>', { fill: true }),
     right: svg('<path d="M5 12h13M12 6l6 6-6 6"/>', { sw: 2.5 }),
     expand: svg('<path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7"/>'),
@@ -468,7 +469,17 @@
           h('div', null,
             h('h4', { class: 'label sub-label', text: Lb.pmSkills }),
             chipList(q.pmSkills)
-          )
+          ),
+          q.link && q.link.url ? h('a', {
+            class: 'btn btn-ghost quest-link',
+            href: q.link.url,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            svg: I.github
+          },
+            q.link.label,
+            h('span', { class: 'visually-hidden', text: ' for ' + q.title + ' (opens in a new tab)' })
+          ) : null
         )
       ));
     });

@@ -110,12 +110,12 @@ window.SITE_CONTENT = {
     skills: {
       navLabel: "Skills",
       title: "Skills",
-      intro: "What I bring to a team. Pick a category to focus on one kind of skill."
+      intro: "What I bring to a team. This list is a work in progress that expands as I learn new things!"
     },
     hobbies: {
       navLabel: "Hobbies",
       title: "Hobbies",
-      intro: "When I log off, you’ll usually find me at a game table or holding a controller."
+      intro: "When I log off, you’ll usually find me rolling dice or mulling over my Steam library."
     },
     contact: {
       navLabel: "Contact",
@@ -222,7 +222,11 @@ window.SITE_CONTENT = {
           { value: "80%", label: "less time to detect an anomaly" },
           { value: "2", label: "engineering teams building from one PRD" }
         ],
-        pmSkills: ["Product discovery", "User interviews", "Personas", "Requirements", "PRD"]
+        pmSkills: ["Product discovery", "User interviews", "Personas", "Requirements", "PRD"],
+        link: {
+          label: "Read the report",
+          url: "https://github.com/SuryaNMenon/College-docs/blob/main/Bispectral_Index_Visualiser_Report-9.pdf"
+        }
       },
       {
         title: "Campus network audit",
@@ -250,7 +254,11 @@ window.SITE_CONTENT = {
           { value: "$17,000", label: "in potential savings" },
           { value: "100%+", label: "future traffic growth supported" }
         ],
-        pmSkills: ["Stakeholder scoping", "Competitive analysis", "Zero-to-one PoC", "Roadmap"]
+        pmSkills: ["Stakeholder scoping", "Competitive analysis", "Zero-to-one PoC", "Roadmap"],
+        link: {
+          label: "Read the report",
+          url: "https://github.com/SuryaNMenon/College-docs/blob/main/Analysis_and_Audit_of_Campus_Network.pdf"
+        }
       }
     ]
   },
